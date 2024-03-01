@@ -1,0 +1,12 @@
+body{
+    background: wheat;
+    font-family: 'nunito';
+    min-height: 100vh;
+}
+
+footer{
+    text-align: center;
+    font-size: 20px;
+    font-style: italic;
+    color: rgb(112, 98, 82);
+}

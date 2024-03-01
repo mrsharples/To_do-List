@@ -1,0 +1,42 @@
+.todo-items{
+    display:flex;
+    padding-top: 1.5vh;
+    position: sticky;
+    align-items: center;
+    width: 100%;
+}
+
+.todo-items-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.todo-items-text{
+    margin-left: 2vh;
+    width: 100%;
+    color: rgb(112, 98, 82);
+    font-size: (12px + 1.5vw);
+    display: flex;
+    overflow: hidden;
+}
+
+.todo-items-cross-icon{
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.todo-items-container img{
+    width: 4vh;
+    height: auto;
+}
+
+.todo-items-cross-icon{
+    width: 3vh;
+    height: auto;
+    margin-right: 0;
+}
+
+.ticked{
+    text-decoration: line-through solid rgb(112, 98, 82) 2px;
+}
