@@ -24,12 +24,16 @@ const TodoItems = ({no, display, text, setTodos}) => {
   return (
     <div className="todo-items">
         <div className={`todo-items-container ${display}`} onClick={()=>{toggleIcon(no)}}>
-            {display==="" ? 
+            {display === "" ? 
               <img src={not_tick} alt="not_tick.png"/> :
               <img src={tick} alt="tick.png"/>
             }
             <div className="todo-items-text">
-              {text}
+              {display === "" ?
+              text :
+              text.concat(" (completed)")
+            }
+              
             </div>
         </div>
         <Cross no={no} setTodos={setTodos}/>

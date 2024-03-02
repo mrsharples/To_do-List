@@ -11,13 +11,22 @@ const Todo = () => {
   const inputRef = useRef(null);
 
   const addTask = () => {
-    setTodos([...todos, {
-      no:taskCount++,
-      text:inputRef.current.value,
-      display:""
-    }])
-    inputRef.current.value="";
-    localStorage.setItem("todos_count", taskCount);
+    if (inputRef.current.value !== "") {
+      setTodos([...todos, {
+        no:taskCount++,
+        text:inputRef.current.value,
+        display:""
+      }])
+      inputRef.current.value="";
+      localStorage.setItem("todos_count", taskCount);
+      document.querySelector(".error-message").style.display = "none";
+    }
+    else {
+      document.querySelector(".error-message").style.display = "block";
+      setTimeout(() => {
+        document.querySelector(".error-message").style.display = "none";
+      }, 3000)
+    }
   }
 
   useEffect(() => {
@@ -39,12 +48,26 @@ const Todo = () => {
             <img src={tick} alt="tick.png"/>
         </div>
         <div className="todo-add">
-            <input ref={inputRef} type="text" placeholder="Add new task." className="todo-input"/>
+            <input 
+              ref={inputRef} 
+              type="text" 
+              placeholder="Add new task." 
+              className="todo-input" 
+              onKeyDown={e => e.key === "Enter" ? addTask() : null}
+            />
             <div onClick={()=>addTask()} className="todo-add-btn">+ Task</div>
+        </div>
+        <div className="error-message">
+          <p>Please enter a task to add!</p>
         </div>
         <div className="todo-list">
           {todos.map((item,index)=>{
-            return <TodoItems key={index} setTodos={setTodos} no={item.no} display={item.display} text={item.text}/>
+            return <TodoItems key={index} 
+                              setTodos={setTodos} 
+                              no={item.no} 
+                              display={item.display} 
+                              text={item.text}
+                              />
           })}
         </div>
     </div>
