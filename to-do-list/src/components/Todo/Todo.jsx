@@ -51,7 +51,7 @@ const Todo = () => {
             <input 
               ref={inputRef} 
               type="text" 
-              placeholder="Add new task." 
+              placeholder="Add new task..." 
               className="todo-input" 
               onKeyDown={e => e.key === "Enter" ? addTask() : null}
             />

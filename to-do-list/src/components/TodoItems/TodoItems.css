@@ -37,6 +37,10 @@
     margin-right: 0;
 }
 
+.completed{
+    font-style: italic;
+}
+
 .ticked{
     text-decoration: line-through solid rgb(112, 98, 82) 2px;
 }
