@@ -8,13 +8,10 @@ const TodoItems = ({no, display, text, setTodos}) => {
   const toggleIcon = (no) => {
     let data = JSON.parse(localStorage.getItem("todos"));
     for (let i = 0; i < data.length; i++) {
-      if (data[i].no === no) {
-        if (data[i].display === "") {
-          data[i].display = "ticked";
-        }
-        else {
+      if (data[i].no === no) { //toggles display then breaks
+        data[i].display === "" ?
+          data[i].display = "ticked" :
           data[i].display = "";
-        }
         break;
       }
     }
