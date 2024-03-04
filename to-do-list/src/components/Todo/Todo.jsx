@@ -2,8 +2,10 @@ import TodoItems from '../TodoItems/TodoItems';
 import tick from '../assets/tick.png';
 import './Todo.css';
 import { useState, useRef, useEffect } from 'react';
+import Completed from './../Completed/Completed';
 
-let taskCount = 0;
+let taskCount = localStorage.getItem("todos_count") ? 
+                  localStorage.getItem("todos_count") : 0;
 
 const Todo = () => {
 
@@ -18,7 +20,7 @@ const Todo = () => {
         display:""
       }])
       inputRef.current.value="";
-      localStorage.setItem("todos_count", taskCount);
+      localStorage.setItem("todos_count", todos.length + 1);
       document.querySelector(".error-message").style.display = "none";
     }
     else {
@@ -36,8 +38,8 @@ const Todo = () => {
 
   useEffect(()=>{
     setTimeout(() => {
-      console.log(todos);
       localStorage.setItem("todos", JSON.stringify(todos));
+      taskCount = localStorage.getItem("todos_count");
     }, 100)
   }, [todos]) //executes when todos state changegs
 
@@ -61,15 +63,17 @@ const Todo = () => {
           <p>Please enter a task to add!</p>
         </div>
         <div className="todo-list">
-          {todos.map((item,index)=>{
+          {todos.map((task, index)=>{
             return <TodoItems key={index} 
+                              todos={todos}
                               setTodos={setTodos} 
-                              no={item.no} 
-                              display={item.display} 
-                              text={item.text}
+                              no={task.no} 
+                              display={task.display} 
+                              text={task.text}
                               />
           })}
         </div>
+        <Completed todos={todos}/>
     </div>
   )
 }

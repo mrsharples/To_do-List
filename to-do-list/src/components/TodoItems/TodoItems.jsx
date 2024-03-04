@@ -3,7 +3,7 @@ import tick from '../assets/tick.png';
 import not_tick from '../assets/not_tick.png';
 import Cross from './../Cross/Cross';
 
-const TodoItems = ({no, display, text, setTodos}) => {
+const TodoItems = ({no, display, text, todos, setTodos}) => {
 
   const toggleIcon = (no) => {
     let data = JSON.parse(localStorage.getItem("todos"));
@@ -30,10 +30,9 @@ const TodoItems = ({no, display, text, setTodos}) => {
               <p>{text}</p> :
               <p><span className={`${display}`}>{text}</span> <span className='completed'>(completed)</span></p>
             }
-              
             </div>
         </div>
-        <Cross no={no} setTodos={setTodos}/>
+        <Cross no={no} setTodos={setTodos} todos={todos}/>
     </div>
   )
 }
